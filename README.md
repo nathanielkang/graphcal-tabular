@@ -1,46 +1,49 @@
-# GraphCal — reference implementation
+# GraphCal — official implementation (tabular regression)
 
-This repository provides a **reference implementation** of **GraphCal**, a graph-based, manifold-aware data augmentation procedure for **imbalanced tabular regression**. The code is intended to support **reproducibility checks** and **independent re-implementation verification** aligned with the accompanying manuscript.
+This repository provides a **self-contained reference implementation** of **GraphCal**, a graph-based, manifold-aware data augmentation procedure for **imbalanced tabular regression**. The code is intended to support **independent verification** of the method described in the accompanying manuscript (training-data augmentation only; any downstream regressor may be used after augmentation).
 
-## Scope of the release
+## What is included
 
-The tree contains **source code and driver scripts** used to construct augmented training sets and to run the bundled diagnostics. **Numerical experiment logs, aggregated result tables, and manuscript figure assets are not versioned here**; reviewers and readers who wish to regenerate outputs should execute the scripts locally and retain the resulting files in their own working directories.
+- **`src/graphcal/`** — GraphCal augmentation (`GraphCalAugmenter`), OpenML-based dataset loaders used in the evaluation protocol, and evaluation metrics (MAE, tail MAE).
+- **`scripts/smoke_test.py`** — Fast end-to-end sanity check on a standard benchmark split (recommended first run).
+- **`scripts/run_experiments.py`** — Minimal driver: California housing, comparing **training without augmentation** vs **training with GraphCal augmentation** (same regressor family for both).
+- **`scripts/run_all_datasets.py`** — Multi-dataset evaluation driver matching the paper’s dataset list (writes JSON summaries to the working directory when executed).
+- **`scripts/generate_pr_figures.py`** — Optional script to regenerate **illustrative** manuscript-style figures (sensitivity panels, t-SNE visualization of augmented points, per-bin error breakdown, target distributions). Outputs are written under `figures/` in this tree unless `GRAPHCAL_FIGURE_DIR` is set.
+- **`scripts/monitor_cloud_results.ps1`** — Optional helper to poll remote machines over SSH (configure GCP project, zone, VM names, and paths for your environment).
 
-## Layout
+Baseline methods, external reimplementations, and full result tables from the paper are **not** distributed here; reviewers should run the provided drivers to reproduce GraphCal-augmented training on the bundled datasets.
 
-- `src/graphcal/` — `GraphCalAugmenter` (core pipeline), dataset loaders, evaluation metrics
-- `scripts/smoke_test.py` — small end-to-end sanity check (recommended first run)
-- `scripts/run_experiments.py` — single-dataset demonstration driver (California housing)
-- `scripts/run_all_datasets.py` — multi-dataset driver matching the paper’s evaluation protocol
-- `scripts/generate_pr_figures.py` — optional matplotlib export for illustrative figures (writes to `figures/` or to `GRAPHCAL_FIGURE_DIR` if set)
-- `scripts/monitor_cloud_results.ps1` — optional helper for polling remote machines (configure via environment variables documented in the script)
+## Requirements
 
-## Environment and quick verification
+Python 3.10+ and dependencies listed in `requirements.txt`.
 
-Python **3.10+** is recommended. Install dependencies and run the smoke test:
+## Quick verification
 
 ```bash
 python -m pip install -r requirements.txt
 python scripts/smoke_test.py
 ```
 
-A successful smoke test confirms that augmentation, training, and evaluation execute without runtime errors on a standard benchmark split.
+A successful run confirms that augmentation, acceptance filtering, and downstream training complete without error on the packaged smoke configuration.
 
-## Optional figure export
+## Reproducing larger experiments
 
-Figure export is **not required** for verifying the augmentation logic. When enabled, outputs are written under `./figures/` inside this repository unless overridden:
+After the smoke test, use `scripts/run_all_datasets.py` with the documented CLI flags (see `--help`). Runtime and peak memory depend on dataset size and hardware; use the same random seeds as in the paper when comparing to reported numbers.
+
+## Figures (optional)
+
+Figure regeneration is **not** required to verify the core algorithm. When needed, set `GRAPHCAL_FIGURE_DIR` to an absolute path if outputs should be collected outside this directory:
 
 ```bash
-export GRAPHCAL_FIGURE_DIR=/absolute/path/to/output/figures   # Unix
+export GRAPHCAL_FIGURE_DIR=/path/to/output/figures   # Unix
+set GRAPHCAL_FIGURE_DIR=C:\path\to\output\figures    # Windows CMD
 python scripts/generate_pr_figures.py
 ```
 
-On Windows (PowerShell), set `GRAPHCAL_FIGURE_DIR` before invoking the script in the same manner.
-
 ## Citation
 
-If this implementation is useful in your work, please cite the associated article using the bibliographic record provided in the camera-ready / publisher version once available (DOI or stable arXiv identifier).
+Please cite the manuscript using the bibliographic information provided in the camera-ready or preprint version once available (DOI / arXiv).
 
 ## License
 
-Add a `LICENSE` file to match your intended distribution terms before tagging a formal release.
+Add a `LICENSE` file consistent with your institution’s policy before the final public release if one is not already present.

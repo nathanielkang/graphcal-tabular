@@ -13,9 +13,9 @@ Styling: Times New Roman (serif), 300 DPI, thin spines; Fig.4 uses gridspec_kw
 right margin + manual colorbar (no tight_layout + shared colorbar).
 
 Data sources (see module docstrings per figure):
-  - Fig.3: on-the-fly Abalone sweep (optional local cache JSON; gitignored).
-  - Fig.4: sklearn/OpenML Abalone + local augmenters.
-  - Fig.5: California housing + KDE-based rarity bins (SMOGN/PRIME not bundled).
+  - Fig.3: on-the-fly Abalone sweep (optional local cache JSON under the repo root).
+  - Fig.4: sklearn/OpenML Abalone; real points vs real+GraphCal-augmented points (t-SNE).
+  - Fig.5: California housing + KDE-based rarity bins; Vanilla vs GraphCal only.
   - Fig.6: nine datasets via src.graphcal.datasets loaders.
 """
 
@@ -25,7 +25,6 @@ import json
 import os
 import sys
 import warnings
-from dataclasses import dataclass
 from pathlib import Path
 
 import numpy as np
@@ -46,38 +45,6 @@ from sklearn.preprocessing import StandardScaler  # noqa: E402
 from src.graphcal import GraphCalAugmenter  # noqa: E402
 from src.graphcal.datasets import load_dataset  # noqa: E402
 from src.graphcal.metrics import mae  # noqa: E402
-
-
-@dataclass
-class _PairwiseMixupResult:
-    """Minimal pairwise Beta-mixup augmentation (generic baseline for figures only)."""
-
-    X_aug: np.ndarray
-    y_aug: np.ndarray
-
-
-def _pairwise_regression_mixup(
-    X: np.ndarray,
-    y: np.ndarray,
-    *,
-    mixup_ratio: float = 0.5,
-    alpha: float = 0.3,
-    random_state: int = 0,
-) -> _PairwiseMixupResult:
-    """Convex combinations of random training pairs (features and target jointly)."""
-    rng = np.random.default_rng(random_state)
-    n = int(X.shape[0])
-    n_new = max(1, int(round(float(mixup_ratio) * n)))
-    rows_x = [np.asarray(X, dtype=np.float64)]
-    rows_y = [np.asarray(y, dtype=np.float64).ravel()]
-    for _ in range(n_new):
-        i, j = rng.choice(n, size=2, replace=False)
-        lam = float(rng.beta(alpha, alpha))
-        rows_x.append(lam * X[i] + (1.0 - lam) * X[j])
-        rows_y.append(lam * y.ravel()[i] + (1.0 - lam) * y.ravel()[j])
-    Xa = np.vstack(rows_x)
-    ya = np.concatenate(rows_y)
-    return _PairwiseMixupResult(X_aug=Xa, y_aug=ya)
 
 
 def _setup_matplotlib():
@@ -253,9 +220,9 @@ def _joint_z(X: np.ndarray, y: np.ndarray, alpha_y: float = 1.0) -> np.ndarray:
 
 def fig4_tsne(plt) -> tuple[Path, Path]:
     """
-    Fig.4: t-SNE of real + synthetic points (Abalone train).
-    Two panels: a generic pairwise mixup visual baseline vs GraphCal (separate
-    embeddings per panel). Perplexity 30, seed 42.
+    Fig.4: t-SNE of Abalone training data — (a) real points only in joint space,
+    (b) real plus GraphCal synthetic points. Separate t-SNE fits per panel.
+    Perplexity 30, seed 42.
     """
     from matplotlib import gridspec
     from matplotlib.cm import ScalarMappable
@@ -278,39 +245,48 @@ def fig4_tsne(plt) -> tuple[Path, Path]:
         return syn_X[j], syn_y[j]
 
     n_real = X_tr.shape[0]
-    mix_vis = _pairwise_regression_mixup(
-        X_tr, y_tr, mixup_ratio=0.5, alpha=0.3, random_state=seed
-    )
     gcal = GraphCalAugmenter(random_state=seed).fit_transform(X_tr, y_tr)
 
     panels = [
-        ("(a) Original + pairwise mixup", mix_vis.X_aug, mix_vis.y_aug, "o", "^"),
-        ("(b) Original + GraphCal", gcal.X_aug, gcal.y_aug, "o", "^"),
+        ("(a) Real training points", X_tr, y_tr, None, None, "o", None),
+        ("(b) Real + GraphCal augmented", gcal.X_aug, gcal.y_aug, X_tr, y_tr, "o", "^"),
     ]
 
-    fig = plt.figure(figsize=(5.2, 2.55))
+    fig = plt.figure(figsize=(5.4, 2.55))
     gs = gridspec.GridSpec(1, 3, width_ratios=[1, 1, 0.06], wspace=0.28, right=0.88)
     axes = [fig.add_subplot(gs[0, i]) for i in range(2)]
     cax = fig.add_subplot(gs[0, 2])
 
-    y_all = np.concatenate([y_tr, mix_vis.y_aug[n_real:], gcal.y_aug[n_real:]])
+    y_all = np.concatenate([y_tr, gcal.y_aug[n_real:]])
     norm = Normalize(vmin=float(np.min(y_all)), vmax=float(np.max(y_all)))
     cmap = plt.cm.viridis
 
-    for ax, (title, Xa, ya, m_real, m_syn) in zip(axes, panels):
-        sx, sy = subsample_syn(Xa, ya, n_real)
-        Z = _joint_z(np.vstack([X_tr, sx]), np.hstack([y_tr, sy]))
-        tsne = TSNE(
-            n_components=2,
-            perplexity=min(perplexity, Z.shape[0] - 1),
-            random_state=seed,
-            init="pca",
-            learning_rate="auto",
-        )
-        emb = tsne.fit_transform(Z)
-        emb_real, emb_syn = emb[:n_real], emb[n_real:]
-        ax.scatter(emb_real[:, 0], emb_real[:, 1], c=y_tr, cmap=cmap, norm=norm, s=10, marker=m_real, edgecolors="none", alpha=0.75)
-        ax.scatter(emb_syn[:, 0], emb_syn[:, 1], c=sy, cmap=cmap, norm=norm, s=14, marker=m_syn, edgecolors="k", linewidths=0.15, alpha=0.85)
+    for ax, (title, Xa, ya, Xr, yr, m_real, m_syn) in zip(axes, panels):
+        if m_syn is None:
+            Z = _joint_z(Xa, ya)
+            tsne = TSNE(
+                n_components=2,
+                perplexity=min(perplexity, Z.shape[0] - 1),
+                random_state=seed,
+                init="pca",
+                learning_rate="auto",
+            )
+            emb = tsne.fit_transform(Z)
+            ax.scatter(emb[:, 0], emb[:, 1], c=ya, cmap=cmap, norm=norm, s=10, marker=m_real, edgecolors="none", alpha=0.75)
+        else:
+            sx, sy = subsample_syn(Xa, ya, n_real)
+            Z = _joint_z(np.vstack([Xr, sx]), np.hstack([yr, sy]))
+            tsne = TSNE(
+                n_components=2,
+                perplexity=min(perplexity, Z.shape[0] - 1),
+                random_state=seed,
+                init="pca",
+                learning_rate="auto",
+            )
+            emb = tsne.fit_transform(Z)
+            emb_real, emb_syn = emb[:n_real], emb[n_real:]
+            ax.scatter(emb_real[:, 0], emb_real[:, 1], c=yr, cmap=cmap, norm=norm, s=10, marker=m_real, edgecolors="none", alpha=0.75)
+            ax.scatter(emb_syn[:, 0], emb_syn[:, 1], c=sy, cmap=cmap, norm=norm, s=14, marker=m_syn, edgecolors="k", linewidths=0.15, alpha=0.85)
         ax.set_title(title, fontsize=8.5)
         ax.set_xlabel("t-SNE 1")
         ax.set_ylabel("t-SNE 2")
@@ -326,8 +302,7 @@ def fig4_tsne(plt) -> tuple[Path, Path]:
     fig.suptitle("Abalone — training subset (70% split)", fontsize=9, y=1.02)
     fig.text(0.5, -0.02, f"t-SNE perplexity = {perplexity}, random_state = {seed}", ha="center", fontsize=7, color="#333333")
 
-    # Manual layout: avoid tight_layout with colorbar
-    fig.subplots_adjust(left=0.06, right=0.86, bottom=0.22, top=0.82, wspace=0.35)
+    fig.subplots_adjust(left=0.07, right=0.88, bottom=0.22, top=0.82, wspace=0.32)
     return _save(fig, "graphcal_fig4_tsne", plt)
 
 
@@ -350,7 +325,7 @@ def _rarity_bins_equal_count(y_train: np.ndarray, y_test: np.ndarray, n_bins: in
 def fig5_perregion(plt) -> tuple[Path, Path]:
     """
     Per-bin MAE (KDE rarity bins: bin 1 = rare, 5 = dense center).
-    California; methods: Vanilla, pairwise mixup (figure baseline), GraphCal.
+    California; methods: Vanilla (no augmentation) vs GraphCal-augmented training.
     """
     seed = 42
     X_tr, X_te, y_tr, y_te = load_dataset("california", seed)
@@ -375,22 +350,18 @@ def fig5_perregion(plt) -> tuple[Path, Path]:
                 per_bin.append(mae(y_te[msk], pred[msk]))
         return per_bin
 
-    mix_vis = _pairwise_regression_mixup(
-        X_tr, y_tr, mixup_ratio=0.5, alpha=0.3, random_state=seed
-    )
     gres = GraphCalAugmenter(random_state=seed).fit_transform(X_tr, y_tr)
 
     series = {
         "Vanilla": train_predict_mae(X_tr, y_tr),
-        "Pairwise mixup": train_predict_mae(mix_vis.X_aug, mix_vis.y_aug),
         "GraphCal": train_predict_mae(gres.X_aug, gres.y_aug),
     }
 
     fig, ax = plt.subplots(figsize=(6.4, 3.8))
     x = np.arange(1, 6)
     n_m = len(series)
-    width = 0.22
-    colors = ["#b0b0b0", "#1f77b4", "#d62728"]
+    width = 0.32
+    colors = ["#b0b0b0", "#d62728"]
     for i, (name, vals) in enumerate(series.items()):
         offset = (i - (n_m - 1) / 2) * width
         ax.bar(x + offset, vals, width, label=name, color=colors[i % len(colors)], edgecolor="0.25", linewidth=0.4)
@@ -406,8 +377,7 @@ def fig5_perregion(plt) -> tuple[Path, Path]:
     ax.text(
         0.02,
         0.02,
-        "Bins: test-point KDE rarity vs. train target (California).\n"
-        "Pairwise mixup: generic convex pair baseline for illustration (not manuscript-specific).",
+        "Bins: test points stratified by KDE-based rarity vs the training target (California housing).",
         transform=ax.transAxes,
         fontsize=6.5,
         va="bottom",
