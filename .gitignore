@@ -16,6 +16,8 @@ results*.csv
 *_cache.json
 monitor_log.txt
 *.log
+figures/
+
 
 # OS / editor
 .DS_Store
