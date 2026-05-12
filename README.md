@@ -8,10 +8,9 @@ This repository provides a **self-contained reference implementation** of **Grap
 - **`scripts/smoke_test.py`** — Fast end-to-end sanity check on a standard benchmark split (recommended first run).
 - **`scripts/run_experiments.py`** — Minimal driver: California housing, comparing **training without augmentation** vs **training with GraphCal augmentation** (same regressor family for both).
 - **`scripts/run_all_datasets.py`** — Multi-dataset evaluation driver matching the paper’s dataset list (writes JSON summaries to the working directory when executed).
-- **`scripts/generate_pr_figures.py`** — Optional script to regenerate **illustrative** manuscript-style figures (sensitivity panels, t-SNE visualization of augmented points, per-bin error breakdown, target distributions). Outputs are written under `figures/` in this tree unless `GRAPHCAL_FIGURE_DIR` is set.
 - **`scripts/monitor_cloud_results.ps1`** — Optional helper to poll remote machines over SSH (configure GCP project, zone, VM names, and paths for your environment).
 
-Baseline methods, external reimplementations, and full result tables from the paper are **not** distributed here; reviewers should run the provided drivers to reproduce GraphCal-augmented training on the bundled datasets.
+Baseline methods, external reimplementations, full result tables from the paper, and **any manuscript figure or plotting utilities** are **not** distributed here; reviewers should run the provided drivers to reproduce GraphCal-augmented training on the bundled datasets.
 
 ## Requirements
 
@@ -29,16 +28,6 @@ A successful run confirms that augmentation, acceptance filtering, and downstrea
 ## Reproducing larger experiments
 
 After the smoke test, use `scripts/run_all_datasets.py` with the documented CLI flags (see `--help`). Runtime and peak memory depend on dataset size and hardware; use the same random seeds as in the paper when comparing to reported numbers.
-
-## Figures (optional)
-
-Figure regeneration is **not** required to verify the core algorithm. When needed, set `GRAPHCAL_FIGURE_DIR` to an absolute path if outputs should be collected outside this directory:
-
-```bash
-export GRAPHCAL_FIGURE_DIR=/path/to/output/figures   # Unix
-set GRAPHCAL_FIGURE_DIR=C:\path\to\output\figures    # Windows CMD
-python scripts/generate_pr_figures.py
-```
 
 ## Citation
 
