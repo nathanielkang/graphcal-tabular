@@ -1,0 +1,14 @@
+{
+  "dataset": "wind",
+  "target": "MAL",
+  "source": {
+    "provider": "OpenML",
+    "data_id": 503,
+    "name": "wind"
+  },
+  "n": 6574,
+  "d": 14,
+  "categorical": [],
+  "excluded_columns": [],
+  "sha256": "a8bafec639d78f026a36608490bb465bd30eaba3482270251292d95e1d95108d"
+}

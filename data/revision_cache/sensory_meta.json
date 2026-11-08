@@ -1,0 +1,16 @@
+{
+  "dataset": "sensory",
+  "target": "track",
+  "source": {
+    "provider": "OpenML",
+    "data_id": 688,
+    "name": "visualizing_soil"
+  },
+  "n": 8641,
+  "d": 4,
+  "categorical": [
+    "isns"
+  ],
+  "excluded_columns": [],
+  "sha256": "dd85267db69146d68de8f18286e1a9f0d1432fd9e284d9bb0c2048369cc09574"
+}

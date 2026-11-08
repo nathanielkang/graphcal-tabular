@@ -1,0 +1,22 @@
+{
+  "dataset": "socmob",
+  "target": "c_charge_degree_M",
+  "source": {
+    "provider": "OpenML",
+    "data_id": 42192,
+    "name": "compas-two-years"
+  },
+  "n": 5278,
+  "d": 13,
+  "categorical": [
+    "sex",
+    "two_year_recid",
+    "age_cat_25-45",
+    "age_cat_Greaterthan45",
+    "age_cat_Lessthan25",
+    "race_African-American",
+    "race_Caucasian"
+  ],
+  "excluded_columns": [],
+  "sha256": "f82e1e151b30d01dc5d0bce01f54f5f614448d79e2bd6996f18a6ff1368e4b9f"
+}

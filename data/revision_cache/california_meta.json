@@ -1,0 +1,14 @@
+{
+  "dataset": "california",
+  "target": "MedHouseVal",
+  "source": {
+    "provider": "sklearn California housing",
+    "target": "MedHouseVal"
+  },
+  "n": 20640,
+  "d": 8,
+  "categorical": [],
+  "excluded_columns": [],
+  "skewness": 0.977692214097841,
+  "sha256": "01da56e3a36961a0e4823bd5d4c7336f43568d680a2a5e0599161202040fdd8a"
+}

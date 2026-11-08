@@ -1,0 +1,19 @@
+{
+  "dataset": "medical_cost",
+  "target": "charges",
+  "source": {
+    "provider": "OpenML",
+    "data_id": 46289,
+    "name": "medical_cost"
+  },
+  "n": 1338,
+  "d": 6,
+  "categorical": [
+    "age",
+    "sex",
+    "smoker",
+    "region"
+  ],
+  "excluded_columns": [],
+  "sha256": "68d0b199912975af464567917c380d48d5ac77f72aa6c84fe8aeab425aa31efd"
+}

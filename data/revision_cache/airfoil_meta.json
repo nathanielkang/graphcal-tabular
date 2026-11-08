@@ -1,0 +1,15 @@
+{
+  "dataset": "airfoil",
+  "target": "sound",
+  "source": {
+    "provider": "UCI",
+    "dataset": "Airfoil self noise",
+    "local_source": "C:\\Users\\user\\OneDrive\\Documents\\KNU\\Research\\6_2026_Spring_Conference\\8_SAC_2027\\E_RareFed\\2_Code\\data_cache\\airfoil_self_noise.dat"
+  },
+  "n": 1503,
+  "d": 5,
+  "categorical": [],
+  "excluded_columns": [],
+  "skewness": -0.4185339558133514,
+  "sha256": "79699d123f7daaf190f6f5d748fdde386307c8a19ca2d2fdc791ec3c855ef174"
+}

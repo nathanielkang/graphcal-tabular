@@ -1,0 +1,14 @@
+{
+  "dataset": "qsar_fish_toxicity",
+  "target": "LC50",
+  "source": {
+    "provider": "OpenML",
+    "data_id": 44970,
+    "name": "QSAR_fish_toxicity"
+  },
+  "n": 908,
+  "d": 6,
+  "categorical": [],
+  "excluded_columns": [],
+  "sha256": "551e38ca496d9c5ca620b78353803b1c02283b7c1c2464a030bab232d7ffc5f2"
+}

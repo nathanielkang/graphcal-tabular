@@ -1,0 +1,15 @@
+{
+  "dataset": "wine",
+  "target": "quality",
+  "source": {
+    "provider": "OpenML",
+    "data_id": 287,
+    "name": "wine_quality"
+  },
+  "n": 6497,
+  "d": 11,
+  "categorical": [],
+  "excluded_columns": [],
+  "skewness": 0.18957891127582208,
+  "sha256": "915414234574f5ae94a30a7f7a48fc7bcd6ba8b318aae8297737ef320dc5574c"
+}

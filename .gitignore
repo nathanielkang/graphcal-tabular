@@ -10,14 +10,26 @@ venv/
 .env
 .env.*
 
-# Local experiment outputs (not for public mirror)
+# Local experiment outputs (not for public mirror — §35 Git)
+results/
 results*.json
 results*.csv
 *_cache.json
 monitor_log.txt
 *.log
-figures/
 
+# Cached tabular frames (can exceed GitHub size limits; rebuild with prepare / OpenML scripts)
+data/revision_cache/*.pkl
+data/revision_cache/*.parquet
+
+# Lab orchestration (personal paths / GCP project names)
+scripts/local_*.ps1
+scripts/pull_overnight*.ps1
+scripts/_start_*.sh
+scripts/gcp_*.sh
+scripts/*monitor*
+scripts/manuscript_nine_monitor_tick.sh
+scripts/hunt_monitor_tick.sh
 
 # OS / editor
 .DS_Store

@@ -1,0 +1,14 @@
+{
+  "dataset": "bank8fm",
+  "target": "quality",
+  "source": {
+    "provider": "OpenML",
+    "data_id": 287,
+    "name": "wine_quality"
+  },
+  "n": 6497,
+  "d": 11,
+  "categorical": [],
+  "excluded_columns": [],
+  "sha256": "56d741026ad40da4ea5ef30f13771ea5cbbf12e0b916824d79c212d613aa229f"
+}

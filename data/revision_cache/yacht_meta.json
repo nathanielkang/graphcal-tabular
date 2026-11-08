@@ -1,0 +1,14 @@
+{
+  "dataset": "yacht",
+  "target": "Residuary.resistance",
+  "source": {
+    "provider": "shared public benchmark cache",
+    "file": "yacht.csv"
+  },
+  "n": 308,
+  "d": 6,
+  "categorical": [],
+  "excluded_columns": [],
+  "skewness": 1.7477493780248623,
+  "sha256": "4a8b7c99fe6a8004914ac03bd2782fa87fbe1a297465575cdcba2dd2a9a55fb0"
+}

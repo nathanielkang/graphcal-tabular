@@ -1,0 +1,14 @@
+{
+  "dataset": "quake",
+  "target": "Se",
+  "source": {
+    "provider": "OpenML",
+    "data_id": 198,
+    "name": "delta_elevators"
+  },
+  "n": 9517,
+  "d": 6,
+  "categorical": [],
+  "excluded_columns": [],
+  "sha256": "44d6f5eb6c0192d235473174545180ba9c5b9922975a02b29651f0a1b1737a66"
+}

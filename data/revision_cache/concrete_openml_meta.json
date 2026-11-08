@@ -1,0 +1,14 @@
+{
+  "dataset": "concrete_openml",
+  "target": "strength",
+  "source": {
+    "provider": "OpenML",
+    "data_id": 44959,
+    "name": "concrete_compressive_strength"
+  },
+  "n": 1030,
+  "d": 8,
+  "categorical": [],
+  "excluded_columns": [],
+  "sha256": "2696185646bc1590182295ee75665a473ae2f474d28802acfd489ea25e95e304"
+}

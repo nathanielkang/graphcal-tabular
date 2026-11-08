@@ -1,0 +1,14 @@
+{
+  "dataset": "geyser",
+  "target": "col_3",
+  "source": {
+    "provider": "OpenML",
+    "data_id": 712,
+    "name": "chscase_geyser1"
+  },
+  "n": 222,
+  "d": 2,
+  "categorical": [],
+  "excluded_columns": [],
+  "sha256": "b9397a109919a841a63cdcae5be178eb24a2dddec067943bba11d1f44cca4702"
+}

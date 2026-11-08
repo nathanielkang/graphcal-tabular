@@ -1,0 +1,17 @@
+{
+  "dataset": "boston_housing",
+  "target": "MEDV",
+  "source": {
+    "provider": "OpenML",
+    "data_id": 531,
+    "name": "boston"
+  },
+  "n": 506,
+  "d": 13,
+  "categorical": [
+    "CHAS",
+    "RAD"
+  ],
+  "excluded_columns": [],
+  "sha256": "0f58e3fe28b809775a17088b8a70559b01fb79ef5a7483346e1f07f7b33db5f0"
+}

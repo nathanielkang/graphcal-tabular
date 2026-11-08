@@ -1,0 +1,14 @@
+{
+  "dataset": "auto_price_uci",
+  "target": "class",
+  "source": {
+    "provider": "OpenML",
+    "data_id": 207,
+    "name": "autoPrice"
+  },
+  "n": 159,
+  "d": 15,
+  "categorical": [],
+  "excluded_columns": [],
+  "sha256": "68fc60f0f841f0bb52d51941c0e1dcec9fbb925db4636ab0316b978a80b7ecb8"
+}

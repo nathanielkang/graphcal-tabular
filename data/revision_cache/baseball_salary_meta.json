@@ -1,0 +1,19 @@
+{
+  "dataset": "baseball_salary",
+  "target": "1987_annual_salary_on_opening_day_in_thousands_of_dollars",
+  "source": {
+    "provider": "OpenML",
+    "data_id": 495,
+    "name": "baseball-pitcher"
+  },
+  "n": 176,
+  "d": 17,
+  "categorical": [
+    "players_team_at_the_end_of_in_1986",
+    "players_league_at_the_end_of_1986",
+    "players_league_at_the_beginning_of_1987",
+    "players_team_at_the_beginning_of_1987"
+  ],
+  "excluded_columns": [],
+  "sha256": "e03df17cea229b0f167fd093d60c88c23d3ae98b61b21e697124b1da63d0aba0"
+}

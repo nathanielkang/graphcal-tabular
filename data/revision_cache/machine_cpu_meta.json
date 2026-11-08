@@ -1,0 +1,14 @@
+{
+  "dataset": "machine_cpu",
+  "target": "class",
+  "source": {
+    "provider": "OpenML",
+    "data_id": 230,
+    "name": "machine_cpu"
+  },
+  "n": 209,
+  "d": 6,
+  "categorical": [],
+  "excluded_columns": [],
+  "sha256": "6a1a4c528bf35903cf0414e3c54ea1be1990019297dd62588fb5d4086316901b"
+}

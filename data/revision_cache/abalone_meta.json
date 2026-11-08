@@ -1,0 +1,17 @@
+{
+  "dataset": "abalone",
+  "target": "Class_number_of_rings",
+  "source": {
+    "provider": "OpenML",
+    "data_id": 183,
+    "name": "abalone"
+  },
+  "n": 4177,
+  "d": 8,
+  "categorical": [
+    "Sex"
+  ],
+  "excluded_columns": [],
+  "skewness": 1.1137017739656028,
+  "sha256": "4fd62a393eb7ba67d05d062faf33f428874ed91df24e81502d41a2542bd7aa34"
+}

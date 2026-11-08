@@ -1,0 +1,14 @@
+{
+  "dataset": "urban_land",
+  "target": "oz51",
+  "source": {
+    "provider": "OpenML",
+    "data_id": 632,
+    "name": "fri_c3_250_50"
+  },
+  "n": 250,
+  "d": 50,
+  "categorical": [],
+  "excluded_columns": [],
+  "sha256": "289386ca698e3e0b06f6e30a224acda5bf8117da1d664435d2b4a2b286064331"
+}

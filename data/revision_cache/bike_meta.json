@@ -1,0 +1,23 @@
+{
+  "dataset": "bike",
+  "target": "count",
+  "source": {
+    "provider": "OpenML",
+    "data_id": 44063,
+    "name": "Bike_Sharing_Demand"
+  },
+  "n": 17379,
+  "d": 11,
+  "categorical": [
+    "season",
+    "year",
+    "month",
+    "hour",
+    "holiday",
+    "workingday",
+    "weather"
+  ],
+  "excluded_columns": [],
+  "skewness": 1.277301346349497,
+  "sha256": "f73b1eadbb2ca2520ac2dc5992d391abebb123c4a9ee9d99ba2974924e9a1d27"
+}

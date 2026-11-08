@@ -1,0 +1,14 @@
+{
+  "dataset": "stock_firm",
+  "target": "company10",
+  "source": {
+    "provider": "OpenML",
+    "data_id": 223,
+    "name": "stock"
+  },
+  "n": 950,
+  "d": 9,
+  "categorical": [],
+  "excluded_columns": [],
+  "sha256": "394dfae5c66d42172cf61452ad3dbfe45622196f057485e85d8bf5e3cfc92ddd"
+}

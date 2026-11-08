@@ -1,0 +1,21 @@
+{
+  "dataset": "moneyball",
+  "target": "RS",
+  "source": {
+    "provider": "OpenML",
+    "data_id": 41021,
+    "name": "Moneyball"
+  },
+  "n": 1232,
+  "d": 14,
+  "categorical": [
+    "Team",
+    "League",
+    "Playoffs",
+    "RankSeason",
+    "RankPlayoffs",
+    "G"
+  ],
+  "excluded_columns": [],
+  "sha256": "61bea64e74103fe1c3fb66193e12698a0f86d2b84506b926e55259184817159d"
+}

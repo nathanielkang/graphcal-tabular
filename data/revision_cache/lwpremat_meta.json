@@ -1,0 +1,16 @@
+{
+  "dataset": "lwpremat",
+  "target": "Graduation_rate",
+  "source": {
+    "provider": "OpenML",
+    "data_id": 538,
+    "name": "colleges_usnews"
+  },
+  "n": 1204,
+  "d": 32,
+  "categorical": [
+    "State"
+  ],
+  "excluded_columns": [],
+  "sha256": "d36b92883986e59cb3f18d19871ce26d0ef377d95393050609eb3dcebbab9013"
+}

@@ -1,0 +1,14 @@
+{
+  "dataset": "elevators",
+  "target": "Annotation",
+  "source": {
+    "provider": "OpenML",
+    "data_id": 4549,
+    "name": "Buzzinsocialmedia_Twitter"
+  },
+  "n": 583250,
+  "d": 77,
+  "categorical": [],
+  "excluded_columns": [],
+  "sha256": "67b0e2c1ac59b34d22ae8ebcf013949aa5dbd126492f4bcff207d9229f9a24fa"
+}

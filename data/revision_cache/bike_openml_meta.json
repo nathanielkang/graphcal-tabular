@@ -1,0 +1,18 @@
+{
+  "id": 44063,
+  "name": "Bike_Sharing_Demand",
+  "features": [
+    "season",
+    "year",
+    "month",
+    "hour",
+    "holiday",
+    "workingday",
+    "weather",
+    "temp",
+    "feel_temp",
+    "humidity",
+    "windspeed"
+  ],
+  "target": "count"
+}

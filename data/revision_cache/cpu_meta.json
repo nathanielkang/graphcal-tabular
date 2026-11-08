@@ -1,0 +1,15 @@
+{
+  "dataset": "cpu",
+  "target": "usr",
+  "source": {
+    "provider": "OpenML",
+    "data_id": 573,
+    "name": "cpu_act"
+  },
+  "n": 8192,
+  "d": 21,
+  "categorical": [],
+  "excluded_columns": [],
+  "skewness": -3.4161239456823633,
+  "sha256": "5798a7ff8a3fc2977b5b037799b93caac02478308602746ef3301b1a51a2caef"
+}

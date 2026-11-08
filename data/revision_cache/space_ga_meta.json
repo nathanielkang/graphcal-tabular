@@ -1,0 +1,14 @@
+{
+  "dataset": "space_ga",
+  "target": "foo",
+  "source": {
+    "provider": "OpenML",
+    "data_id": 201,
+    "name": "pol"
+  },
+  "n": 15000,
+  "d": 48,
+  "categorical": [],
+  "excluded_columns": [],
+  "sha256": "a85c3c9cfc3f6b21d2d4db3d91101a101bec1294b19db3c388b5ae1583e19213"
+}

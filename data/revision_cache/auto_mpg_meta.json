@@ -1,0 +1,14 @@
+{
+  "dataset": "auto_mpg",
+  "target": "class",
+  "source": {
+    "provider": "shared public benchmark cache",
+    "file": "auto_mpg.csv"
+  },
+  "n": 392,
+  "d": 7,
+  "categorical": [],
+  "excluded_columns": [],
+  "skewness": 0.45534138282810366,
+  "sha256": "03cba8d69ea7fd69b7595b9f35cb38fa96cfeccc9fc8ecb1492212d2d7d49894"
+}

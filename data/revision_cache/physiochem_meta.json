@@ -1,0 +1,22 @@
+{
+  "dataset": "physiochem",
+  "target": "num",
+  "source": {
+    "provider": "OpenML",
+    "data_id": 194,
+    "name": "cleveland"
+  },
+  "n": 303,
+  "d": 13,
+  "categorical": [
+    "sex",
+    "cp",
+    "fbs",
+    "restecg",
+    "exang",
+    "slope",
+    "thal"
+  ],
+  "excluded_columns": [],
+  "sha256": "abe1b706ef4ed7f8f73e271f1860a0549e0a094f8c8ca61b36f23e51a22d503c"
+}

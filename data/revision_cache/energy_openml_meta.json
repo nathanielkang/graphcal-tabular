@@ -1,0 +1,16 @@
+{
+  "id": 1472,
+  "name": "energy-efficiency",
+  "features": [
+    "V1",
+    "V2",
+    "V3",
+    "V4",
+    "V5",
+    "V6",
+    "V7",
+    "V8",
+    "y2"
+  ],
+  "target": "y1"
+}

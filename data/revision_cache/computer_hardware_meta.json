@@ -1,0 +1,16 @@
+{
+  "dataset": "computer_hardware",
+  "target": "9",
+  "source": {
+    "provider": "OpenML",
+    "data_id": 46287,
+    "name": "computer_hardware"
+  },
+  "n": 209,
+  "d": 8,
+  "categorical": [
+    "0"
+  ],
+  "excluded_columns": [],
+  "sha256": "6bdc5269430fb78360513e7a93a64d70a1173c6f01c8a907b1916e4b15e4367e"
+}

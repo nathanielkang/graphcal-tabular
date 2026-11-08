@@ -1,0 +1,14 @@
+{
+  "dataset": "treasury",
+  "target": "1MonthCDRate",
+  "source": {
+    "provider": "OpenML",
+    "data_id": 42367,
+    "name": "treasury"
+  },
+  "n": 1049,
+  "d": 15,
+  "categorical": [],
+  "excluded_columns": [],
+  "sha256": "514e99beb7770537793c48fdf8cf47258f01f242a3b735d58cf2be5f8d0c8d55"
+}

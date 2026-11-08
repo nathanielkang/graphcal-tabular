@@ -1,0 +1,14 @@
+{
+  "dataset": "house_16h",
+  "target": "price",
+  "source": {
+    "provider": "OpenML",
+    "data_id": 574,
+    "name": "house_16H"
+  },
+  "n": 22784,
+  "d": 16,
+  "categorical": [],
+  "excluded_columns": [],
+  "sha256": "b033fe62ca7bccf03d280890794ed6c38e1889485ec1efe657c7856ee0e32e20"
+}

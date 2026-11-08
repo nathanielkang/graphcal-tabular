@@ -1,0 +1,14 @@
+{
+  "dataset": "energy_efficiency",
+  "target": "Y1",
+  "source": {
+    "provider": "OpenML",
+    "data_id": 43918,
+    "name": "energy_efficiency"
+  },
+  "n": 768,
+  "d": 8,
+  "categorical": [],
+  "excluded_columns": [],
+  "sha256": "3c5fb4749805f8ee870bf8b2c57218dfebfb3652b8306ec3fab29a2e798bfc8f"
+}

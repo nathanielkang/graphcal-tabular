@@ -1,0 +1,14 @@
+{
+  "dataset": "puma8nh",
+  "target": "field_goals",
+  "source": {
+    "provider": "OpenML",
+    "data_id": 519,
+    "name": "vinnie"
+  },
+  "n": 380,
+  "d": 2,
+  "categorical": [],
+  "excluded_columns": [],
+  "sha256": "84d531bbfbf39b3a25a08d5a40de8494a09d6fb82dbd6de10225543aa88e02f3"
+}

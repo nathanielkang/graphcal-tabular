@@ -1,0 +1,14 @@
+{
+  "dataset": "concrete",
+  "target": "target",
+  "source": {
+    "provider": "shared public benchmark cache",
+    "file": "concreteStrength.csv"
+  },
+  "n": 1030,
+  "d": 8,
+  "categorical": [],
+  "excluded_columns": [],
+  "skewness": 0.41636979411469355,
+  "sha256": "50517eaa1787c8a5f52b90a6e96b8848deca8112f7cbe89aae5100e200f46a6f"
+}

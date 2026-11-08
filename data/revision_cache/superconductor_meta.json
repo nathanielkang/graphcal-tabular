@@ -1,0 +1,15 @@
+{
+  "dataset": "superconductor",
+  "target": "critical_temp",
+  "source": {
+    "provider": "OpenML",
+    "data_id": 44964,
+    "name": "superconductivity"
+  },
+  "n": 21263,
+  "d": 81,
+  "categorical": [],
+  "excluded_columns": [],
+  "skewness": 0.8601626069019359,
+  "sha256": "606a6ad00d9100cee5aed4e423477cdada2fc87542d8d1eb2ea8f0c0cdfe291a"
+}

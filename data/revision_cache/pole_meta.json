@@ -1,0 +1,14 @@
+{
+  "dataset": "pole",
+  "target": "col_8",
+  "source": {
+    "provider": "OpenML",
+    "data_id": 672,
+    "name": "chscase_census3"
+  },
+  "n": 400,
+  "d": 7,
+  "categorical": [],
+  "excluded_columns": [],
+  "sha256": "ba853fe61daa2d97a727a8bf11c53644e8ed63c156708b6530e2e18bbf4d9fa4"
+}

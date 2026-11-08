@@ -1,0 +1,22 @@
+{
+  "dataset": "cholesterol",
+  "target": "chol",
+  "source": {
+    "provider": "OpenML",
+    "data_id": 204,
+    "name": "cholesterol"
+  },
+  "n": 303,
+  "d": 13,
+  "categorical": [
+    "sex",
+    "cp",
+    "fbs",
+    "restecg",
+    "exang",
+    "slope",
+    "thal"
+  ],
+  "excluded_columns": [],
+  "sha256": "09c42d5b1643106a523991a63ffdc9be1fdcba017ad32b352ba2a9de791cb780"
+}

@@ -1,38 +1,45 @@
-# GraphCal — official implementation (tabular regression)
+# GraphCal
 
-This repository provides a **self-contained reference implementation** of **GraphCal**, a graph-based, manifold-aware data augmentation procedure for **imbalanced tabular regression**. The code is intended to support **independent verification** of the method described in the accompanying manuscript (training-data augmentation only; any downstream regressor may be used after augmentation).
+**Target-frequency balancing can miss rare feature configurations at otherwise common targets.** GraphCal builds a nearest-neighbor graph in joint feature–target space, allocates sparse-node budgets, draws shrinkage-stabilized local Gaussian proposals, and screens candidates before training. Activation is decided separately on a held-out sample.
 
-## What is included
+<p align="center">
+  <img src="figures/graphcal_motivation.png" alt="Motivation: similar targets can sit in separated feature regions, so target-only oversampling need not help where the regressor lacks local support" width="96%">
+</p>
 
-- **`src/graphcal/`** — GraphCal augmentation (`GraphCalAugmenter`), OpenML-based dataset loaders used in the evaluation protocol, and evaluation metrics (MAE, tail MAE).
-- **`scripts/smoke_test.py`** — Fast end-to-end sanity check on a standard benchmark split (recommended first run).
-- **`scripts/run_experiments.py`** — Minimal driver: California housing, comparing **training without augmentation** vs **training with GraphCal augmentation** (same regressor family for both).
-- **`scripts/run_all_datasets.py`** — Multi-dataset evaluation driver matching the paper’s dataset list (writes JSON summaries to the working directory when executed).
-- **`scripts/monitor_cloud_results.ps1`** — Optional helper to poll remote machines over SSH (configure GCP project, zone, VM names, and paths for your environment).
+<p align="center">
+  <img src="figures/graphcal_pipeline.png" alt="GraphCal pipeline: joint neighborhoods and proposals, distance and residual screens, then independent activation after fitting" width="96%">
+</p>
 
-Baseline methods, external reimplementations, full result tables from the paper, and **any manuscript figure or plotting utilities** are **not** distributed here; reviewers should run the provided drivers to reproduce GraphCal-augmented training on the bundled datasets.
-
-## Requirements
-
-Python 3.10+ and dependencies listed in `requirements.txt`.
-
-## Quick verification
+## Quick start
 
 ```bash
 python -m pip install -r requirements.txt
 python scripts/smoke_test.py
 ```
 
-A successful run confirms that augmentation, acceptance filtering, and downstream training complete without error on the packaged smoke configuration.
+Full revision-protocol driver (seven methods, configurable datasets and seeds):
 
-## Reproducing larger experiments
+```bash
+python scripts/run_revision_protocol.py --help
+```
 
-After the smoke test, use `scripts/run_all_datasets.py` with the documented CLI flags (see `--help`). Runtime and peak memory depend on dataset size and hardware; use the same random seeds as in the paper when comparing to reported numbers.
+Dataset caches for the revision protocol live under `data/revision_cache/` after you run the prepare / OpenML ingest scripts. Pickle caches are **not** shipped in this mirror (file-size limits); rebuild them locally:
+
+```bash
+python scripts/prepare_revision_data.py
+python scripts/add_hunt_openml_datasets.py   # optional extra OpenML sets
+```
+
+## Layout
+
+| Path | Role |
+|------|------|
+| `src/graphcal/` | Augmenter, activation, revision models and baselines, loaders |
+| `scripts/` | Smoke test, revision protocol, tuning and screening helpers |
+| `third_party/` | Vendored baseline pieces (e.g. SMOGN / CEMS adaptations) |
+| `tests/` | Guarantee / smoke unit tests |
+| `figures/` | README plates (motivation, pipeline) |
 
 ## Citation
 
-Please cite the manuscript using the bibliographic information provided in the camera-ready or preprint version once available (DOI / arXiv).
-
-## License
-
-Add a `LICENSE` file consistent with your institution’s policy before the final public release if one is not already present.
+Please cite the accompanying manuscript once a DOI or preprint identifier is available.

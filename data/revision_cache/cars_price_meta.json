@@ -1,0 +1,14 @@
+{
+  "dataset": "cars_price",
+  "target": "Price",
+  "source": {
+    "provider": "OpenML",
+    "data_id": 44994,
+    "name": "cars"
+  },
+  "n": 804,
+  "d": 17,
+  "categorical": [],
+  "excluded_columns": [],
+  "sha256": "ce575346da0c0a89cada2456b62d1bb3c01d0c9629bea858cbac6da33d2c4809"
+}

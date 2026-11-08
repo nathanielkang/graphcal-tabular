@@ -1,0 +1,18 @@
+{
+  "dataset": "forest_fires",
+  "target": "Area",
+  "source": {
+    "provider": "UCI",
+    "dataset": "Forest fires",
+    "local_source": "C:\\Users\\user\\OneDrive\\Documents\\KNU\\Research\\6_2026_Spring_Conference\\7_ICML_2026\\3_Code\\Datasets\\forestFires_clean.csv"
+  },
+  "n": 517,
+  "d": 12,
+  "categorical": [
+    "Month",
+    "Day"
+  ],
+  "excluded_columns": [],
+  "skewness": 12.809629951754573,
+  "sha256": "150f730851e665776457b1811eab02f85b89d7c3e36575319196722a00fa8a99"
+}

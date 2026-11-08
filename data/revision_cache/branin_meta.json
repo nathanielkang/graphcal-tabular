@@ -1,0 +1,14 @@
+{
+  "dataset": "branin",
+  "target": "y",
+  "source": {
+    "provider": "OpenML",
+    "data_id": 41907,
+    "name": "branin"
+  },
+  "n": 225,
+  "d": 2,
+  "categorical": [],
+  "excluded_columns": [],
+  "sha256": "e2fe51e389822e152e21359916eb82fea484145447214948280df9fb3b0b39e5"
+}

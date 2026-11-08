@@ -1,0 +1,21 @@
+{
+  "dataset": "bodyfat",
+  "target": "L7",
+  "source": {
+    "provider": "OpenML",
+    "data_id": 42837,
+    "name": "bodyfat"
+  },
+  "n": 252,
+  "d": 13,
+  "categorical": [
+    "L1",
+    "L2",
+    "L3",
+    "L4",
+    "L5",
+    "L6"
+  ],
+  "excluded_columns": [],
+  "sha256": "13686acb2e7c5ea716af99294e0eda7284cd2386846f8f081df3d058fc08c617"
+}
